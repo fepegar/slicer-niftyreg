@@ -8,8 +8,9 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/fepegar/slicer-niftyreg.git
 mkdir ~/bin
-ln -s $(which reg_aladin) ~/bin
-ln -s $(which reg_f3d) ~/bin
+cd ~/bin
+ln -s $(which reg_aladin)
+ln -s $(which reg_f3d)
 ```
 
 
