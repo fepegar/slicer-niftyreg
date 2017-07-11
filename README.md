@@ -1,6 +1,6 @@
 # NiftyReg
 
-[3D Slicer](https://www.slicer.org/) module as a GUI for [`NiftyReg`](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), an open-source software for efficient medical image registration developed by [Marc Modat](http://cmic.cs.ucl.ac.uk/staff/marc_modat/) at the University College London.
+[3D Slicer](https://www.slicer.org/) module as a GUI for [`NiftyReg`](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg), an open-source software for efficient medical image registration developed by [Marc Modat](http://cmictig.cs.ucl.ac.uk/people/research-staff/2-mmodat) at the University College London.
 
 In a terminal, run:
 ```
