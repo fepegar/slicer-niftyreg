@@ -14,8 +14,8 @@ from __main__ import vtk, qt, ctk, slicer
 from slicer.ScriptedLoadableModule import *
 
 NIFTYREG_LINK = 'http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg'
-ALADIN_PATH = os.path.expanduser('~/bin/reg_aladin')
-F3D_PATH = os.path.expanduser('~/bin/reg_f3d')
+ALADIN_PATH = shutil.which('reg_aladin')
+F3D_PATH = shutil.which('reg_f3d')
 TRANSFORMATIONS_MAP = collections.OrderedDict([('Rigid', ALADIN_PATH),
                                                ('Affine', ALADIN_PATH),
                                                ('Non-linear', F3D_PATH)])
