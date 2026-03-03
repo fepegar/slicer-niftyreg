@@ -17,22 +17,19 @@ ln -s $(which reg_f3d)
 In `~/.slicerrc.py`:
 
 ```
-import os
+from pathlib import Path
 import qt
 
 moduleFactory = slicer.app.moduleManager().factoryManager()
  
-dirs = ['~/git/slicer-niftyreg']
+dirs = [Path('~/git/slicer-niftyreg').expanduser()]
 
-dirs = filter(os.path.isdir, [os.path.expanduser(d) for d in dirs])
+dirs = [d for d in dirs if d.is_dir()]
 
 for d in dirs:
-    for fn in os.listdir(d):
-        if not fn.endswith('.py'):
-            continue
-        fp = os.path.join(d, fn)
-        moduleFactory.registerModule(qt.QFileInfo(fp))
-        moduleFactory.loadModules([os.path.splitext(fn)[0]])
+    for fp in d.glob('*.py'):
+        moduleFactory.registerModule(qt.QFileInfo(str(fp)))
+        moduleFactory.loadModules([fp.stem])
 ```
 
 
