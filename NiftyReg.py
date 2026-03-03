@@ -1,4 +1,3 @@
-import os
 import time
 import shutil
 import random
@@ -6,6 +5,7 @@ import string
 import datetime
 import subprocess
 import collections
+from pathlib import Path
 
 import numpy as np
 import sitkUtils as su
@@ -14,8 +14,8 @@ from __main__ import vtk, qt, ctk, slicer
 from slicer.ScriptedLoadableModule import *
 
 NIFTYREG_LINK = 'http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg'
-ALADIN_PATH = os.path.expanduser('~/bin/reg_aladin')
-F3D_PATH = os.path.expanduser('~/bin/reg_f3d')
+ALADIN_PATH = str(Path('~/bin/reg_aladin').expanduser())
+F3D_PATH = str(Path('~/bin/reg_f3d').expanduser())
 TRANSFORMATIONS_MAP = collections.OrderedDict([('Rigid', ALADIN_PATH),
                                                ('Affine', ALADIN_PATH),
                                                ('Non-linear', F3D_PATH)])
@@ -465,11 +465,11 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
         when failed
         """
         if self.resultVolumeNode is not None:
-            if not os.path.isfile(self.resPath):
+            if not Path(self.resPath).is_file():
                 return False
 
         if self.resultTransformNode is not None:
-            if not os.path.isfile(self.resultTransformPath):
+            if not Path(self.resultTransformPath).is_file():
                 return False
 
         return True
@@ -667,7 +667,7 @@ class NiftyRegLogic(ScriptedLoadableModuleLogic):
         filename += ext
         if dateTime is not None:
             filename = '{}_{}'.format(dateTime.strftime("%Y%m%d_%H%M%S"), filename)
-        return os.path.join(directory, filename)
+        return str(Path(directory) / filename)
 
 
     def centerViews(self):
