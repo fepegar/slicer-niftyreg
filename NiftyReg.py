@@ -581,7 +581,7 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
         self.pyramidLowestSpinBox.maximum = self.pyramidHighestSpinBox.value
         self.pyramidHighestSpinBox.minimum = self.pyramidLowestSpinBox.value
 
-        if self.referencePyramidMap is None:
+        if self.referencePyramidMap is None or self.floatingPyramidMap is None:
             self.pyramidHighestReferenceLabel.text = ''
             self.pyramidHighestFloatingLabel.text = ''
             self.pyramidLowestReferenceLabel.text = ''
@@ -596,6 +596,10 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
             lowestLevelShape = self.floatingPyramidMap[self.pyramidLowestSpinBox.value]
             self.pyramidHighestFloatingLabel.text = getShapeString(highestLevelShape)
             self.pyramidLowestFloatingLabel.text = getShapeString(lowestLevelShape)
+
+
+    def getPyramidLevels(self):
+        return self.pyramidHighestSpinBox.value, self.pyramidLowestSpinBox.value
 
 
     def onReferenceThresholdSlider(self):
