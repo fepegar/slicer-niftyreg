@@ -13,7 +13,7 @@ import SimpleITK as sitk
 from __main__ import vtk, qt, ctk, slicer
 from slicer.ScriptedLoadableModule import *
 
-NIFTYREG_LINK = 'http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg'
+NIFTYREG_LINK = 'https://github.com/KCL-BMEIS/niftyreg'
 ALADIN_PATH = shutil.which('reg_aladin')
 F3D_PATH = shutil.which('reg_f3d')
 TRANSFORMATIONS_MAP = collections.OrderedDict([('Rigid', ALADIN_PATH),
@@ -30,7 +30,7 @@ class NiftyReg(ScriptedLoadableModule):
         self.parent.dependencies = []
         self.parent.contributors = ["Fernando Perez-Garcia (fepegar@gmail.com - Brain & Spine Institute - Paris)"]
         self.parent.helpText = """NiftyReg is an open-source software for efficient medical image registration."""
-        self.parent.acknowledgementText = """NiftyReg is developed and maintained by Marc Modat (University College London)."""
+        self.parent.acknowledgementText = """NiftyReg is developed and maintained by Marc Modat (King's College London)."""
 
 
 
