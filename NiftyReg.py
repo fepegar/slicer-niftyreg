@@ -14,8 +14,8 @@ from __main__ import vtk, qt, ctk, slicer
 from slicer.ScriptedLoadableModule import *
 
 NIFTYREG_LINK = 'http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg'
-ALADIN_PATH = str(Path('~/bin/reg_aladin').expanduser())
-F3D_PATH = str(Path('~/bin/reg_f3d').expanduser())
+ALADIN_PATH = shutil.which('reg_aladin')
+F3D_PATH = shutil.which('reg_f3d')
 TRANSFORMATIONS_MAP = collections.OrderedDict([('Rigid', ALADIN_PATH),
                                                ('Affine', ALADIN_PATH),
                                                ('Non-linear', F3D_PATH)])
@@ -582,8 +582,10 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
         self.pyramidHighestSpinBox.minimum = self.pyramidLowestSpinBox.value
 
         if self.referencePyramidMap is None:
-            self.pyramidHighestLabel.text = ''
-            self.pyramidLowestLabel.text = ''
+            self.pyramidHighestReferenceLabel.text = ''
+            self.pyramidHighestFloatingLabel.text = ''
+            self.pyramidLowestReferenceLabel.text = ''
+            self.pyramidLowestFloatingLabel.text = ''
         else:
             highestLevelShape = self.referencePyramidMap[self.pyramidHighestSpinBox.value]
             lowestLevelShape = self.referencePyramidMap[self.pyramidLowestSpinBox.value]
