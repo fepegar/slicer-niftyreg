@@ -582,8 +582,10 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
         self.pyramidHighestSpinBox.minimum = self.pyramidLowestSpinBox.value
 
         if self.referencePyramidMap is None:
-            self.pyramidHighestLabel.text = ''
-            self.pyramidLowestLabel.text = ''
+            self.pyramidHighestReferenceLabel.text = ''
+            self.pyramidHighestFloatingLabel.text = ''
+            self.pyramidLowestReferenceLabel.text = ''
+            self.pyramidLowestFloatingLabel.text = ''
         else:
             highestLevelShape = self.referencePyramidMap[self.pyramidHighestSpinBox.value]
             lowestLevelShape = self.referencePyramidMap[self.pyramidLowestSpinBox.value]
