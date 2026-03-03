@@ -641,7 +641,7 @@ class NiftyRegWidget(ScriptedLoadableModuleWidget):
                 errorMessage = ''
                 if not self.outputsExist():
                     errorMessage += 'Output volume not written on the disk\n\n'
-                errorMessage += output[1]
+                errorMessage += output[1].decode()
                 slicer.util.errorDisplay(errorMessage, windowTitle="Registration error")
             else:
                 tFin = time.time()
@@ -713,7 +713,7 @@ class NiftyRegLogic(ScriptedLoadableModuleLogic):
 
 
     def getNumpyMatrixFromVTKMatrix(self, vtkMatrix):
-        matrix = np.identity(4, np.float)
+        matrix = np.identity(4)
         for row in range(4):
             for col in range(4):
                 matrix[row,col] = vtkMatrix.GetElement(row,col)
@@ -791,7 +791,7 @@ class NiftyRegLogic(ScriptedLoadableModuleLogic):
         with open(vectorfieldPath, mode='rb') as f:  # b is important -> binary
             f.seek(HEADER_SIZE)
             imageData = f.read()
-        imageData = np.fromstring(imageData, dtype=np.float32)
+        imageData = np.frombuffer(imageData, dtype=np.float32)
         return imageData
 
 
